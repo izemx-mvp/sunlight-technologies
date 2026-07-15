@@ -34,13 +34,14 @@ function Conversations() {
   const send = () => {
     if (!draft.trim() || !selected) return;
     const newMsg = { id: Math.random().toString(), from: "human" as const, text: draft, at: new Date().toISOString() };
-    setConversations(conversations.map(c => c.id === selected.id ? { ...c, messages: [...c.messages, newMsg], unread: 0, lastAt: newMsg.at } : c));
+    const withUser = conversations.map(c => c.id === selected.id ? { ...c, messages: [...c.messages, newMsg], unread: 0, lastAt: newMsg.at } : c);
+    setConversations(withUser);
     setDraft("");
     setTyping(true);
     setTimeout(() => {
       setTyping(false);
       const ai = { id: Math.random().toString(), from: "ai" as const, text: "Merci pour votre message. Je transmets à l'équipe.", at: new Date().toISOString() };
-      setConversations(prev => prev.map(c => c.id === selected.id ? { ...c, messages: [...c.messages, ai] } : c));
+      setConversations(withUser.map(c => c.id === selected.id ? { ...c, messages: [...c.messages, ai] } : c));
     }, 1500);
   };
 
