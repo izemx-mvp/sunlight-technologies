@@ -12,10 +12,13 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as AppRouteImport } from './routes/_app'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AppTicketsRouteImport } from './routes/_app.tickets'
+import { Route as AppSocialAccountsRouteImport } from './routes/_app.social-accounts'
 import { Route as AppOverviewRouteImport } from './routes/_app.overview'
 import { Route as AppKnowledgeRouteImport } from './routes/_app.knowledge'
+import { Route as AppGalleryRouteImport } from './routes/_app.gallery'
 import { Route as AppDashboardRouteImport } from './routes/_app.dashboard'
 import { Route as AppConversationsRouteImport } from './routes/_app.conversations'
+import { Route as AppCalendarRouteImport } from './routes/_app.calendar'
 
 const AppRoute = AppRouteImport.update({
   id: '/_app',
@@ -31,6 +34,11 @@ const AppTicketsRoute = AppTicketsRouteImport.update({
   path: '/tickets',
   getParentRoute: () => AppRoute,
 } as any)
+const AppSocialAccountsRoute = AppSocialAccountsRouteImport.update({
+  id: '/social-accounts',
+  path: '/social-accounts',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppOverviewRoute = AppOverviewRouteImport.update({
   id: '/overview',
   path: '/overview',
@@ -39,6 +47,11 @@ const AppOverviewRoute = AppOverviewRouteImport.update({
 const AppKnowledgeRoute = AppKnowledgeRouteImport.update({
   id: '/knowledge',
   path: '/knowledge',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppGalleryRoute = AppGalleryRouteImport.update({
+  id: '/gallery',
+  path: '/gallery',
   getParentRoute: () => AppRoute,
 } as any)
 const AppDashboardRoute = AppDashboardRouteImport.update({
@@ -51,58 +64,81 @@ const AppConversationsRoute = AppConversationsRouteImport.update({
   path: '/conversations',
   getParentRoute: () => AppRoute,
 } as any)
+const AppCalendarRoute = AppCalendarRouteImport.update({
+  id: '/calendar',
+  path: '/calendar',
+  getParentRoute: () => AppRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/calendar': typeof AppCalendarRoute
   '/conversations': typeof AppConversationsRoute
   '/dashboard': typeof AppDashboardRoute
+  '/gallery': typeof AppGalleryRoute
   '/knowledge': typeof AppKnowledgeRoute
   '/overview': typeof AppOverviewRoute
+  '/social-accounts': typeof AppSocialAccountsRoute
   '/tickets': typeof AppTicketsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/calendar': typeof AppCalendarRoute
   '/conversations': typeof AppConversationsRoute
   '/dashboard': typeof AppDashboardRoute
+  '/gallery': typeof AppGalleryRoute
   '/knowledge': typeof AppKnowledgeRoute
   '/overview': typeof AppOverviewRoute
+  '/social-accounts': typeof AppSocialAccountsRoute
   '/tickets': typeof AppTicketsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/_app': typeof AppRouteWithChildren
+  '/_app/calendar': typeof AppCalendarRoute
   '/_app/conversations': typeof AppConversationsRoute
   '/_app/dashboard': typeof AppDashboardRoute
+  '/_app/gallery': typeof AppGalleryRoute
   '/_app/knowledge': typeof AppKnowledgeRoute
   '/_app/overview': typeof AppOverviewRoute
+  '/_app/social-accounts': typeof AppSocialAccountsRoute
   '/_app/tickets': typeof AppTicketsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/calendar'
     | '/conversations'
     | '/dashboard'
+    | '/gallery'
     | '/knowledge'
     | '/overview'
+    | '/social-accounts'
     | '/tickets'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/calendar'
     | '/conversations'
     | '/dashboard'
+    | '/gallery'
     | '/knowledge'
     | '/overview'
+    | '/social-accounts'
     | '/tickets'
   id:
     | '__root__'
     | '/'
     | '/_app'
+    | '/_app/calendar'
     | '/_app/conversations'
     | '/_app/dashboard'
+    | '/_app/gallery'
     | '/_app/knowledge'
     | '/_app/overview'
+    | '/_app/social-accounts'
     | '/_app/tickets'
   fileRoutesById: FileRoutesById
 }
@@ -134,6 +170,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppTicketsRouteImport
       parentRoute: typeof AppRoute
     }
+    '/_app/social-accounts': {
+      id: '/_app/social-accounts'
+      path: '/social-accounts'
+      fullPath: '/social-accounts'
+      preLoaderRoute: typeof AppSocialAccountsRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/_app/overview': {
       id: '/_app/overview'
       path: '/overview'
@@ -146,6 +189,13 @@ declare module '@tanstack/react-router' {
       path: '/knowledge'
       fullPath: '/knowledge'
       preLoaderRoute: typeof AppKnowledgeRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/gallery': {
+      id: '/_app/gallery'
+      path: '/gallery'
+      fullPath: '/gallery'
+      preLoaderRoute: typeof AppGalleryRouteImport
       parentRoute: typeof AppRoute
     }
     '/_app/dashboard': {
@@ -162,22 +212,35 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppConversationsRouteImport
       parentRoute: typeof AppRoute
     }
+    '/_app/calendar': {
+      id: '/_app/calendar'
+      path: '/calendar'
+      fullPath: '/calendar'
+      preLoaderRoute: typeof AppCalendarRouteImport
+      parentRoute: typeof AppRoute
+    }
   }
 }
 
 interface AppRouteChildren {
+  AppCalendarRoute: typeof AppCalendarRoute
   AppConversationsRoute: typeof AppConversationsRoute
   AppDashboardRoute: typeof AppDashboardRoute
+  AppGalleryRoute: typeof AppGalleryRoute
   AppKnowledgeRoute: typeof AppKnowledgeRoute
   AppOverviewRoute: typeof AppOverviewRoute
+  AppSocialAccountsRoute: typeof AppSocialAccountsRoute
   AppTicketsRoute: typeof AppTicketsRoute
 }
 
 const AppRouteChildren: AppRouteChildren = {
+  AppCalendarRoute: AppCalendarRoute,
   AppConversationsRoute: AppConversationsRoute,
   AppDashboardRoute: AppDashboardRoute,
+  AppGalleryRoute: AppGalleryRoute,
   AppKnowledgeRoute: AppKnowledgeRoute,
   AppOverviewRoute: AppOverviewRoute,
+  AppSocialAccountsRoute: AppSocialAccountsRoute,
   AppTicketsRoute: AppTicketsRoute,
 }
 
