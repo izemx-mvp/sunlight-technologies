@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as AppRouteImport } from './routes/_app'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AppWorkersRouteImport } from './routes/_app.workers'
+import { Route as AppUsersRouteImport } from './routes/_app.users'
 import { Route as AppTicketsRouteImport } from './routes/_app.tickets'
 import { Route as AppSocialAccountsRouteImport } from './routes/_app.social-accounts'
 import { Route as AppRecruitmentRouteImport } from './routes/_app.recruitment'
@@ -19,11 +20,13 @@ import { Route as AppPipelineRouteImport } from './routes/_app.pipeline'
 import { Route as AppOverviewRouteImport } from './routes/_app.overview'
 import { Route as AppLeadsRouteImport } from './routes/_app.leads'
 import { Route as AppKnowledgeRouteImport } from './routes/_app.knowledge'
+import { Route as AppIntegrationsRouteImport } from './routes/_app.integrations'
 import { Route as AppGalleryRouteImport } from './routes/_app.gallery'
 import { Route as AppFollowUpsRouteImport } from './routes/_app.follow-ups'
 import { Route as AppEmployeesRouteImport } from './routes/_app.employees'
 import { Route as AppDashboardRouteImport } from './routes/_app.dashboard'
 import { Route as AppConversationsRouteImport } from './routes/_app.conversations'
+import { Route as AppConfigRouteImport } from './routes/_app.config'
 import { Route as AppCalendarRouteImport } from './routes/_app.calendar'
 import { Route as AppAccountingRouteImport } from './routes/_app.accounting'
 
@@ -39,6 +42,11 @@ const IndexRoute = IndexRouteImport.update({
 const AppWorkersRoute = AppWorkersRouteImport.update({
   id: '/workers',
   path: '/workers',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppUsersRoute = AppUsersRouteImport.update({
+  id: '/users',
+  path: '/users',
   getParentRoute: () => AppRoute,
 } as any)
 const AppTicketsRoute = AppTicketsRouteImport.update({
@@ -76,6 +84,11 @@ const AppKnowledgeRoute = AppKnowledgeRouteImport.update({
   path: '/knowledge',
   getParentRoute: () => AppRoute,
 } as any)
+const AppIntegrationsRoute = AppIntegrationsRouteImport.update({
+  id: '/integrations',
+  path: '/integrations',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppGalleryRoute = AppGalleryRouteImport.update({
   id: '/gallery',
   path: '/gallery',
@@ -101,6 +114,11 @@ const AppConversationsRoute = AppConversationsRouteImport.update({
   path: '/conversations',
   getParentRoute: () => AppRoute,
 } as any)
+const AppConfigRoute = AppConfigRouteImport.update({
+  id: '/config',
+  path: '/config',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppCalendarRoute = AppCalendarRouteImport.update({
   id: '/calendar',
   path: '/calendar',
@@ -116,11 +134,13 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/accounting': typeof AppAccountingRoute
   '/calendar': typeof AppCalendarRoute
+  '/config': typeof AppConfigRoute
   '/conversations': typeof AppConversationsRoute
   '/dashboard': typeof AppDashboardRoute
   '/employees': typeof AppEmployeesRoute
   '/follow-ups': typeof AppFollowUpsRoute
   '/gallery': typeof AppGalleryRoute
+  '/integrations': typeof AppIntegrationsRoute
   '/knowledge': typeof AppKnowledgeRoute
   '/leads': typeof AppLeadsRoute
   '/overview': typeof AppOverviewRoute
@@ -128,17 +148,20 @@ export interface FileRoutesByFullPath {
   '/recruitment': typeof AppRecruitmentRoute
   '/social-accounts': typeof AppSocialAccountsRoute
   '/tickets': typeof AppTicketsRoute
+  '/users': typeof AppUsersRoute
   '/workers': typeof AppWorkersRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/accounting': typeof AppAccountingRoute
   '/calendar': typeof AppCalendarRoute
+  '/config': typeof AppConfigRoute
   '/conversations': typeof AppConversationsRoute
   '/dashboard': typeof AppDashboardRoute
   '/employees': typeof AppEmployeesRoute
   '/follow-ups': typeof AppFollowUpsRoute
   '/gallery': typeof AppGalleryRoute
+  '/integrations': typeof AppIntegrationsRoute
   '/knowledge': typeof AppKnowledgeRoute
   '/leads': typeof AppLeadsRoute
   '/overview': typeof AppOverviewRoute
@@ -146,6 +169,7 @@ export interface FileRoutesByTo {
   '/recruitment': typeof AppRecruitmentRoute
   '/social-accounts': typeof AppSocialAccountsRoute
   '/tickets': typeof AppTicketsRoute
+  '/users': typeof AppUsersRoute
   '/workers': typeof AppWorkersRoute
 }
 export interface FileRoutesById {
@@ -154,11 +178,13 @@ export interface FileRoutesById {
   '/_app': typeof AppRouteWithChildren
   '/_app/accounting': typeof AppAccountingRoute
   '/_app/calendar': typeof AppCalendarRoute
+  '/_app/config': typeof AppConfigRoute
   '/_app/conversations': typeof AppConversationsRoute
   '/_app/dashboard': typeof AppDashboardRoute
   '/_app/employees': typeof AppEmployeesRoute
   '/_app/follow-ups': typeof AppFollowUpsRoute
   '/_app/gallery': typeof AppGalleryRoute
+  '/_app/integrations': typeof AppIntegrationsRoute
   '/_app/knowledge': typeof AppKnowledgeRoute
   '/_app/leads': typeof AppLeadsRoute
   '/_app/overview': typeof AppOverviewRoute
@@ -166,6 +192,7 @@ export interface FileRoutesById {
   '/_app/recruitment': typeof AppRecruitmentRoute
   '/_app/social-accounts': typeof AppSocialAccountsRoute
   '/_app/tickets': typeof AppTicketsRoute
+  '/_app/users': typeof AppUsersRoute
   '/_app/workers': typeof AppWorkersRoute
 }
 export interface FileRouteTypes {
@@ -174,11 +201,13 @@ export interface FileRouteTypes {
     | '/'
     | '/accounting'
     | '/calendar'
+    | '/config'
     | '/conversations'
     | '/dashboard'
     | '/employees'
     | '/follow-ups'
     | '/gallery'
+    | '/integrations'
     | '/knowledge'
     | '/leads'
     | '/overview'
@@ -186,17 +215,20 @@ export interface FileRouteTypes {
     | '/recruitment'
     | '/social-accounts'
     | '/tickets'
+    | '/users'
     | '/workers'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/accounting'
     | '/calendar'
+    | '/config'
     | '/conversations'
     | '/dashboard'
     | '/employees'
     | '/follow-ups'
     | '/gallery'
+    | '/integrations'
     | '/knowledge'
     | '/leads'
     | '/overview'
@@ -204,6 +236,7 @@ export interface FileRouteTypes {
     | '/recruitment'
     | '/social-accounts'
     | '/tickets'
+    | '/users'
     | '/workers'
   id:
     | '__root__'
@@ -211,11 +244,13 @@ export interface FileRouteTypes {
     | '/_app'
     | '/_app/accounting'
     | '/_app/calendar'
+    | '/_app/config'
     | '/_app/conversations'
     | '/_app/dashboard'
     | '/_app/employees'
     | '/_app/follow-ups'
     | '/_app/gallery'
+    | '/_app/integrations'
     | '/_app/knowledge'
     | '/_app/leads'
     | '/_app/overview'
@@ -223,6 +258,7 @@ export interface FileRouteTypes {
     | '/_app/recruitment'
     | '/_app/social-accounts'
     | '/_app/tickets'
+    | '/_app/users'
     | '/_app/workers'
   fileRoutesById: FileRoutesById
 }
@@ -252,6 +288,13 @@ declare module '@tanstack/react-router' {
       path: '/workers'
       fullPath: '/workers'
       preLoaderRoute: typeof AppWorkersRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/users': {
+      id: '/_app/users'
+      path: '/users'
+      fullPath: '/users'
+      preLoaderRoute: typeof AppUsersRouteImport
       parentRoute: typeof AppRoute
     }
     '/_app/tickets': {
@@ -303,6 +346,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppKnowledgeRouteImport
       parentRoute: typeof AppRoute
     }
+    '/_app/integrations': {
+      id: '/_app/integrations'
+      path: '/integrations'
+      fullPath: '/integrations'
+      preLoaderRoute: typeof AppIntegrationsRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/_app/gallery': {
       id: '/_app/gallery'
       path: '/gallery'
@@ -338,6 +388,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppConversationsRouteImport
       parentRoute: typeof AppRoute
     }
+    '/_app/config': {
+      id: '/_app/config'
+      path: '/config'
+      fullPath: '/config'
+      preLoaderRoute: typeof AppConfigRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/_app/calendar': {
       id: '/_app/calendar'
       path: '/calendar'
@@ -358,11 +415,13 @@ declare module '@tanstack/react-router' {
 interface AppRouteChildren {
   AppAccountingRoute: typeof AppAccountingRoute
   AppCalendarRoute: typeof AppCalendarRoute
+  AppConfigRoute: typeof AppConfigRoute
   AppConversationsRoute: typeof AppConversationsRoute
   AppDashboardRoute: typeof AppDashboardRoute
   AppEmployeesRoute: typeof AppEmployeesRoute
   AppFollowUpsRoute: typeof AppFollowUpsRoute
   AppGalleryRoute: typeof AppGalleryRoute
+  AppIntegrationsRoute: typeof AppIntegrationsRoute
   AppKnowledgeRoute: typeof AppKnowledgeRoute
   AppLeadsRoute: typeof AppLeadsRoute
   AppOverviewRoute: typeof AppOverviewRoute
@@ -370,17 +429,20 @@ interface AppRouteChildren {
   AppRecruitmentRoute: typeof AppRecruitmentRoute
   AppSocialAccountsRoute: typeof AppSocialAccountsRoute
   AppTicketsRoute: typeof AppTicketsRoute
+  AppUsersRoute: typeof AppUsersRoute
   AppWorkersRoute: typeof AppWorkersRoute
 }
 
 const AppRouteChildren: AppRouteChildren = {
   AppAccountingRoute: AppAccountingRoute,
   AppCalendarRoute: AppCalendarRoute,
+  AppConfigRoute: AppConfigRoute,
   AppConversationsRoute: AppConversationsRoute,
   AppDashboardRoute: AppDashboardRoute,
   AppEmployeesRoute: AppEmployeesRoute,
   AppFollowUpsRoute: AppFollowUpsRoute,
   AppGalleryRoute: AppGalleryRoute,
+  AppIntegrationsRoute: AppIntegrationsRoute,
   AppKnowledgeRoute: AppKnowledgeRoute,
   AppLeadsRoute: AppLeadsRoute,
   AppOverviewRoute: AppOverviewRoute,
@@ -388,6 +450,7 @@ const AppRouteChildren: AppRouteChildren = {
   AppRecruitmentRoute: AppRecruitmentRoute,
   AppSocialAccountsRoute: AppSocialAccountsRoute,
   AppTicketsRoute: AppTicketsRoute,
+  AppUsersRoute: AppUsersRoute,
   AppWorkersRoute: AppWorkersRoute,
 }
 
