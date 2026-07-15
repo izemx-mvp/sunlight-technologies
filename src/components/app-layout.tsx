@@ -43,14 +43,12 @@ const nav = [
 
 export function SunlightLogo({ className = "" }: { className?: string }) {
   return (
-    <div className={`flex items-center gap-2 ${className}`}>
-      <div className="relative flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-[#C8862B] to-[#f4c07a] shadow-md">
-        <Sun className="h-5 w-5 text-white" strokeWidth={2.5} />
-      </div>
-      <div className="leading-tight">
-        <div className="text-sm font-bold tracking-tight text-white">Sunlight</div>
-        <div className="text-[10px] font-medium uppercase tracking-widest text-white/60">Technologies</div>
-      </div>
+    <div className={`flex items-center ${className}`}>
+      <img
+        src="/__l5e/assets-v1/02011e86-a92c-41be-a4d0-df9324810431/sunlight-logo.jpg"
+        alt="Sunlight Technologies"
+        className="h-10 w-auto rounded-md object-contain"
+      />
     </div>
   );
 }
