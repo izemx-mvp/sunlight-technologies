@@ -2,6 +2,7 @@ import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import { Sun, ArrowRight } from "lucide-react";
 import { toast } from "sonner";
+import { SunlightLogo } from "@/components/app-layout";
 
 export const Route = createFileRoute("/")({
   component: LoginPage,
@@ -33,11 +34,7 @@ function LoginPage() {
 
       <div className="relative z-10 w-full max-w-md">
         <div className="mb-6 flex flex-col items-center gap-3">
-          <img
-            src="/__l5e/assets-v1/02011e86-a92c-41be-a4d0-df9324810431/sunlight-logo.jpg"
-            alt="Sunlight Technologies"
-            className="h-24 w-auto rounded-2xl object-contain shadow-2xl"
-          />
+          <SunlightLogo className="h-24 rounded-2xl shadow-2xl [&_img]:h-24 [&_img]:rounded-2xl" />
           <div className="text-center">
             <div className="text-sm font-medium text-white/70">Back-office d'administration</div>
           </div>

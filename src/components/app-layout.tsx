@@ -7,6 +7,7 @@ import {
   Bell, Search, LogOut, Menu, X, Sun,
 } from "lucide-react";
 import { useStore } from "@/lib/store";
+import sunlightLogo from "@/assets/sunlight-logo.jpg";
 
 const nav = [
   { section: "PILOTAGE", items: [
@@ -45,8 +46,8 @@ export function SunlightLogo({ className = "" }: { className?: string }) {
   return (
     <div className={`flex items-center ${className}`}>
       <img
-        src="/__l5e/assets-v1/02011e86-a92c-41be-a4d0-df9324810431/sunlight-logo.jpg"
-        alt="Sunlight Technologies"
+        src={sunlightLogo}
+        alt="Sun Light Technology"
         className="h-10 w-auto rounded-md object-contain"
       />
     </div>
